@@ -19,6 +19,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: Install dependencies
+        if: steps.cache-python.outputs.cache-hit != 'true'
+        run: |
+          python3 -m pip install --upgrade pip==23.0.1 setuptools wheel
+          python3 -m pip install flake8
       - name: Lint with flake8, type check with mypy
         run: |
           flake8 ./feature_manager ./models
