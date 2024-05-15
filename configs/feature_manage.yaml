@@ -1,0 +1,6 @@
+raw_review_data_dir: "data/Digital_Music.json"
+raw_product_data_dir: "data/meta_Digital_Music.json"
+
+review_data_dir: "data/processed/review"
+product_data_dir: "data/processed/product"
+feature_save_dir: "data/processed/features.csv"
