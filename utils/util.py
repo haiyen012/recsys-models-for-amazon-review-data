@@ -23,7 +23,7 @@ class SparkInitializer:
         self.app_name = app_name
         self.master = master
         self.config = config if config else {}
-        self.config["spark.local.dir"] = f"/tmp/pyspark/{random.randint(0, 1000000)}"
+        # self.config["spark.local.dir"] = f"/tmp/pyspark/{random.randint(0, 1000000)}"
         self.spark = self._init_spark()
 
     def _init_spark(self):

@@ -124,6 +124,7 @@ def spliting_data(config):
     columns = ['label', *(f'I{i}' for i in range(1, 18)),
                *(f'C{i}' for i in range(1, 8))]
     df = pd.read_csv(config["feature_save_dir"]).fillna(0)
+    df.columns = columns
     df["label"] = df["label"] - 1
 
     df_test = df[df['I1'] == 2018]

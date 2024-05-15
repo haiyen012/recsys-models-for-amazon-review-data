@@ -46,4 +46,5 @@ if __name__ == "__main__":
         app()
     else:
         generating_features()
+        training_model()
         spark_initializer.stop()
