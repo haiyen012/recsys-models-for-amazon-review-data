@@ -17,70 +17,84 @@ from utils.util import (
 )
 
 
-digital_music_schema = StructType([
-    StructField("asin", StringType()),
-    StructField("image", StringType()),
-    StructField("overall", DoubleType()),
-    StructField("reviewText", StringType()),
-    StructField("reviewTime", StringType()),
-    StructField("reviewerID", StringType()),
-    StructField("reviewerName", StringType()),
-    StructField("style", StructType([
-        StructField("Color:", StringType()),
-        StructField("Format:", StringType()),
-        StructField("Size:", StringType()),
-    ])),
-    StructField("summary", StringType()),
-    StructField("unixReviewTime", LongType()),
-    StructField("verified", BooleanType()),
-    StructField("vote", StringType())
-])
+digital_music_schema = StructType(
+    [
+        StructField("asin", StringType()),
+        StructField("image", StringType()),
+        StructField("overall", DoubleType()),
+        StructField("reviewText", StringType()),
+        StructField("reviewTime", StringType()),
+        StructField("reviewerID", StringType()),
+        StructField("reviewerName", StringType()),
+        StructField(
+            "style",
+            StructType(
+                [
+                    StructField("Color:", StringType()),
+                    StructField("Format:", StringType()),
+                    StructField("Size:", StringType()),
+                ]
+            ),
+        ),
+        StructField("summary", StringType()),
+        StructField("unixReviewTime", LongType()),
+        StructField("verified", BooleanType()),
+        StructField("vote", StringType()),
+    ]
+)
 
 
-meta_data_schema = StructType([
-    StructField("also_buy", ArrayType(StringType())),
-    StructField("also_view", ArrayType(StringType())),
-    StructField("asin", StringType()),
-    StructField("brand", StringType()),
-    StructField("category", ArrayType(StringType())),
-    StructField("date", StringType()),
-    StructField("description", ArrayType(StringType())),
-    StructField("details", StructType([
-        StructField("\n    Item Weight: \n    ", StringType()),
-        StructField("\n    Product Dimensions: \n    ", StringType()),
-        StructField("ASIN::", StringType()),
-        StructField("ASIN:", StringType()),
-        StructField("Apparel", StringType()),
-        StructField("Audio CD", StringType()),
-        StructField("Audio Cassette", StringType()),
-        StructField("Blu-ray Audio", StringType()),
-        StructField("DVD", StringType()),
-        StructField("DVD Audio", StringType()),
-        StructField("Label::", StringType()),
-        StructField("MP3 Music", StringType()),
-        StructField("Note on Boxed Sets::", StringType()),
-        StructField("Number of Discs::", StringType()),
-        StructField("Original Release Date::", StringType()),
-        StructField("Please Note::", StringType()),
-        StructField("Run Time::", StringType()),
-        StructField("SPARS Code::", StringType()),
-        StructField("Shipping Weight::", StringType()),
-        StructField("UPC::", StringType()),
-        StructField("Vinyl", StringType()),
-        StructField("Vinyl Bound", StringType())
-    ])),
-    StructField("feature", ArrayType(StringType())),
-    StructField("fit", StringType()),
-    StructField("imageURL", ArrayType(StringType())),
-    StructField("imageURLHighRes", ArrayType(StringType())),
-    StructField("main_cat", StringType()),
-    StructField("price", StringType()),
-    StructField("rank", StringType()),
-    StructField("similar_item", StringType()),
-    StructField("tech1", StringType()),
-    StructField("tech2", StringType()),
-    StructField("title", StringType())
-])
+meta_data_schema = StructType(
+    [
+        StructField("also_buy", ArrayType(StringType())),
+        StructField("also_view", ArrayType(StringType())),
+        StructField("asin", StringType()),
+        StructField("brand", StringType()),
+        StructField("category", ArrayType(StringType())),
+        StructField("date", StringType()),
+        StructField("description", ArrayType(StringType())),
+        StructField(
+            "details",
+            StructType(
+                [
+                    StructField("\n    Item Weight: \n    ", StringType()),
+                    StructField("\n    Product Dimensions: \n    ", StringType()),
+                    StructField("ASIN::", StringType()),
+                    StructField("ASIN:", StringType()),
+                    StructField("Apparel", StringType()),
+                    StructField("Audio CD", StringType()),
+                    StructField("Audio Cassette", StringType()),
+                    StructField("Blu-ray Audio", StringType()),
+                    StructField("DVD", StringType()),
+                    StructField("DVD Audio", StringType()),
+                    StructField("Label::", StringType()),
+                    StructField("MP3 Music", StringType()),
+                    StructField("Note on Boxed Sets::", StringType()),
+                    StructField("Number of Discs::", StringType()),
+                    StructField("Original Release Date::", StringType()),
+                    StructField("Please Note::", StringType()),
+                    StructField("Run Time::", StringType()),
+                    StructField("SPARS Code::", StringType()),
+                    StructField("Shipping Weight::", StringType()),
+                    StructField("UPC::", StringType()),
+                    StructField("Vinyl", StringType()),
+                    StructField("Vinyl Bound", StringType()),
+                ]
+            ),
+        ),
+        StructField("feature", ArrayType(StringType())),
+        StructField("fit", StringType()),
+        StructField("imageURL", ArrayType(StringType())),
+        StructField("imageURLHighRes", ArrayType(StringType())),
+        StructField("main_cat", StringType()),
+        StructField("price", StringType()),
+        StructField("rank", StringType()),
+        StructField("similar_item", StringType()),
+        StructField("tech1", StringType()),
+        StructField("tech2", StringType()),
+        StructField("title", StringType()),
+    ]
+)
 
 
 def process_review_data(spark, config, schema):
@@ -104,8 +118,9 @@ def process_review_data(spark, config, schema):
         "verified",
         "vote",
     )
-    df_with_schema.write.partitionBy(
-        "product_rating").parquet(save_dir, mode="overwrite")
+    df_with_schema.write.partitionBy("product_rating").parquet(
+        save_dir, mode="overwrite"
+    )
 
 
 def process_meta_data(spark, config, schema):
@@ -122,8 +137,7 @@ def process_meta_data(spark, config, schema):
         "category",
         F.col("description").alias("product_description"),
         F.col("details.\n    Item Weight: \n    ").alias("item_weight"),
-        F.col("details.\n    Product Dimensions: \n    ").alias(
-            "product_dimension"),
+        F.col("details.\n    Product Dimensions: \n    ").alias("product_dimension"),
         F.col("details.Apparel").alias("Apparel"),
         F.col("details.Audio CD").alias("Audio CD"),
         F.col("details.Audio Cassette").alias("Audio Cassette"),
@@ -140,7 +154,7 @@ def process_meta_data(spark, config, schema):
         "main_cat",
         "price",
         "rank",
-        "title"
+        "title",
     )
     df_with_schema.write.mode("overwrite").parquet(save_dir)
 
@@ -164,8 +178,5 @@ if __name__ == "__main__":
 
     spark_initializer = SparkInitializer(app_name="Processing Data")
     spark_connect = spark_initializer.spark
-    processing_data(
-        spark=spark_connect,
-        config=config
-    )
+    processing_data(spark=spark_connect, config=config)
     spark_connect.stop()
