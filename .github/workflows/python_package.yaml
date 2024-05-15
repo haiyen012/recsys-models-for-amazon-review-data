@@ -8,3 +8,18 @@ on:
   pull_request:
     branches:
       - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.9]
+        java-version: [8]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Lint with flake8, type check with mypy
+        run: |
+          flake8 ./feature_manager ./models
+          mypy --show-traceback ./feature_manager ./models
