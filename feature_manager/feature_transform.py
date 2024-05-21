@@ -1,6 +1,7 @@
-import pandas as pd
 import numpy as np
-from utils.util import return_or_load, load_simple_dict_config
+import pandas as pd
+
+from utils.util import load_simple_dict_config, return_or_load
 
 
 class ReviewFeatureTransforming:

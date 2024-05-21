@@ -1,12 +1,10 @@
-import tensorflow as tf
-import pandas as pd
-from sklearn import preprocessing
-
 # from keras.metrics import Recall
 import matplotlib.pyplot as plt
+import pandas as pd
+import tensorflow as tf
+from sklearn import preprocessing
 
-from utils.util import return_or_load, load_simple_dict_config
-
+from utils.util import load_simple_dict_config, return_or_load
 
 BATCH_SIZE = 256
 

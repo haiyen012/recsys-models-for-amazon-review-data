@@ -1,21 +1,18 @@
-from pathlib import Path
 import shutil
+from pathlib import Path
+
 import pyspark.sql.functions as F
 from pyspark.sql.types import (
-    BooleanType,
     ArrayType,
-    LongType,
+    BooleanType,
     DoubleType,
+    LongType,
     StringType,
     StructField,
     StructType,
 )
-from utils.util import (
-    SparkInitializer,
-    return_or_load,
-    load_simple_dict_config,
-)
 
+from utils.util import SparkInitializer, load_simple_dict_config, return_or_load
 
 digital_music_schema = StructType(
     [

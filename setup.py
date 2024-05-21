@@ -15,6 +15,8 @@ style_packages = [
     "pre-commit==3.3.2",
 ]
 
+test_packages = ["pytest==7.3.2"]
+
 with open("README.md") as f:
     readme = f.read()
 
@@ -32,6 +34,7 @@ setup(
     packages=find_packages(exclude=("tests", "docs")),
     python_requires=">=3.9",
     extras_require={
-        "dev": required_packages + style_packages,
+        "dev": required_packages + style_packages + test_packages,
+        "test": required_packages + test_packages,
     },
 )

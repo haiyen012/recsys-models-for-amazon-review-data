@@ -20,3 +20,10 @@ style:
 	black ./${FEATURE_FOLDER}/ ./${MODEL_FOLDER}/
 	flake8 ./${FEATURE_FOLDER}/ ./${MODEL_FOLDER}/
 	${PYTHON} -m isort -rc ./${FEATURE_FOLDER}/ ./${MODEL_FOLDER}/
+
+
+# Test
+test:
+	${PYTHON} -m flake8 ./${FEATURE_FOLDER}/ ./${MODEL_FOLDER}/
+	${PYTHON} -m mypy ./${FEATURE_FOLDER}/ ./${MODEL_FOLDER}/
+	# pytest -s --durations=0 --disable-warnings ./${MODEL_FOLDER}/
