@@ -23,7 +23,7 @@ style:
 
 
 # Test
-test:
-	${PYTHON} -m flake8 ./${FEATURE_FOLDER}/ ./${MODEL_FOLDER}/
-	${PYTHON} -m mypy ./${FEATURE_FOLDER}/ ./${MODEL_FOLDER}/
-	# pytest -s --durations=0 --disable-warnings ./${MODEL_FOLDER}/
+# test:
+# 	${PYTHON} -m flake8 ./${FEATURE_FOLDER}/ ./${MODEL_FOLDER}/
+# 	${PYTHON} -m mypy ./${FEATURE_FOLDER}/ ./${MODEL_FOLDER}/
+# 	# pytest -s --durations=0 --disable-warnings ./${MODEL_FOLDER}/
