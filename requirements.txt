@@ -6,6 +6,6 @@ pyyaml==6.0
 typer==0.9.0
 tqdm==4.64.1
 matplotlib==3.8.0
-tensorflow==2.16.1
+tensorflow==2.12.1
 pyarrow==14.0.2
 fastparquet==2024.2.0

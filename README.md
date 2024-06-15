@@ -33,3 +33,8 @@ If you are on a Windows system, run the following commands instead:
 python main.py generating-features
 python main.py training-model
 ```
+### FEFM model
+To run FEFM model, install deepctr:
+```angular2html
+pip install deepctr[cpu]
+```
