@@ -20,13 +20,13 @@ conda activate dlrm_env
 To process features, run:
 
 ```
-sh generating_features.sh
+sh scripts/generating_features.sh
 ```
 
 To build and train the model, run:
 
 ```
-sh build_model.sh
+sh scripts/build_model.sh
 ```
 If you are on a Windows system, run the following commands instead:
 ```

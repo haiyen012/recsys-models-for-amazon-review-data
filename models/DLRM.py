@@ -211,7 +211,7 @@ def build_and_train_model(config):
         callbacks=[
             tf.keras.callbacks.EarlyStopping(patience=6, restore_best_weights=True)
         ],
-        epochs=3,
+        epochs=5,
         verbose=1,
     )
 

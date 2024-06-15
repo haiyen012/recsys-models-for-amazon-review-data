@@ -16,7 +16,7 @@ app = typer.Typer(pretty_exceptions_enable=False)
 spark_initializer = SparkInitializer()
 spark_connect = spark_initializer.spark
 # spark_initializer.clear_cache()
-feature_config = "/home/xuan-sang/total_venvs/DLRM_Amazon/configs/feature_manage.yaml"
+feature_config = "./configs/feature_manage.yaml"
 
 
 @app.command()
