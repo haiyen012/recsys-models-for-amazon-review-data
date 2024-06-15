@@ -36,8 +36,8 @@ jobs:
           python3 -m pip install -e ".[dev]"
       - name: Lint with flake8, type check with mypy
         run: |
-          flake8 ./recsys-models-for-amazon-review-data
-          mypy --show-traceback ./recsys-models-for-amazon-review-data
+          flake8 ./feature_manager ./models
+          mypy --show-traceback ./feature_manager ./models
 #      - name: Test with pytest
 #        run: |
 #          python3 -m pytest -s --durations=0 tests/
