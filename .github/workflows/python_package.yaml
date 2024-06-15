@@ -15,16 +15,29 @@ jobs:
     strategy:
       matrix:
         python-version: [3.9]
-        java-version: [8]
 
     steps:
       - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Cache python installation
+        id: cache-python
+        uses: actions/cache@v3
+        with:
+          path: ${{ env.pythonLocation }}
+          key: ${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ hashFiles('requirements.txt') }}
+          restore-keys: ${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}
       - name: Install dependencies
         if: steps.cache-python.outputs.cache-hit != 'true'
         run: |
           python3 -m pip install --upgrade pip==23.0.1 setuptools wheel
-          python3 -m pip install flake8
+          python3 -m pip install -e ".[dev]"
       - name: Lint with flake8, type check with mypy
         run: |
-          flake8 ./feature_manager ./models
-          mypy --show-traceback ./feature_manager ./models
+          flake8 ./etlrawdata
+          mypy --show-traceback ./etlrawdata
+#      - name: Test with pytest
+#        run: |
+#          python3 -m pytest -s --durations=0 tests/
