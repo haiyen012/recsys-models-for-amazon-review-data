@@ -121,3 +121,6 @@ tests/lightning_logs/
 
 # database
 *.db
+
+# model output
+*.h5
